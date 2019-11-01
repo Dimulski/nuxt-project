@@ -1,0 +1,26 @@
+.main-content {
+  padding-left: 45px !important;
+  padding-right: 45px !important;
+}
+
+.general-error {
+  font-size: 19px;
+  padding-bottom: 15px;
+}
+
+.form-group:not(#checkbox) {
+  text-align: left;
+}
+
+.message {
+  padding-top: 7px;
+}
+
+.form-group {
+  margin-bottom: 1.7rem !important;
+}
+
+.vti__dropdown {
+  padding-left: 0px !important;
+  margin-left: -5px;
+}

@@ -1,55 +1,49 @@
 <template>
   <div>
+    <app-header />
     <nuxt />
   </div>
 </template>
 
+<script>
+import AppHeader from '@/components/AppHeader.vue'
+
+export default {
+  components: {
+    AppHeader
+  }
+}
+</script>
+
 <style>
-html {
-  font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
-    Roboto, 'Helvetica Neue', Arial, sans-serif;
-  font-size: 16px;
-  word-spacing: 1px;
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
-  -moz-osx-font-smoothing: grayscale;
+#app {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
-  box-sizing: border-box;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+}
+#nav {
+  padding: 30px;
 }
 
-*,
-*:before,
-*:after {
-  box-sizing: border-box;
-  margin: 0;
+#nav a {
+  font-weight: bold;
+  color: #2c3e50;
 }
 
-.button--green {
-  display: inline-block;
-  border-radius: 4px;
-  border: 1px solid #3b8070;
-  color: #3b8070;
-  text-decoration: none;
-  padding: 10px 30px;
+#nav a.router-link-exact-active {
+  color: #42b983;
 }
 
-.button--green:hover {
-  color: #fff;
-  background-color: #3b8070;
-}
-
-.button--grey {
-  display: inline-block;
-  border-radius: 4px;
-  border: 1px solid #35495e;
-  color: #35495e;
-  text-decoration: none;
-  padding: 10px 30px;
-  margin-left: 15px;
-}
-
-.button--grey:hover {
-  color: #fff;
-  background-color: #35495e;
+.main-content {
+  margin: auto;
+  margin-bottom: 80px;
+  padding: 35px;
+  -webkit-border-radius: 2px 6px 6px;
+  border-radius: 2px 6px 6px;
+  background: #fff;
+  -webkit-box-shadow: 0 3px 9px rgba(0,0,0,.25);
+  box-shadow: 0 3px 20px rgba(0,0,0,.25);
 }
 </style>
