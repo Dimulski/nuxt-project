@@ -1,3 +1,4 @@
+// store/index.js
 export const state = () => ({
 })
 
@@ -6,3 +7,4 @@ export const getters = () => ({
     return rootGetters['tasks/getRows']
   }
 })
+// end

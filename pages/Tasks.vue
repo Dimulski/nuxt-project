@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import { mapState, mapGetters } from 'vuex'
+import { mapState, mapGetters, mapActions } from 'vuex'
 import MainContent from '@/components/MainContent.vue'
 import ListItem from '@/components/ListItem.vue'
 
@@ -29,19 +29,25 @@ export default {
   computed: {
     ...mapState({
       tasks: state => this.$store.state.tasks.tasks
-    }),
-    ...mapGetters({
-      getRows: 'tasks/getRows',
-      getItemsForRow: 'tasks/getItemsForRow'
     })
   },
+  async fetch ({ store, params }) {
+    await store.dispatch('loadSelectedTasks')
+  },
   mounted () {
-    this.$store.dispatch('tasks/loadSelectedTasks')
+    // this.$store.dispatch('loadSelectedTasks')
   },
   methods: {
     getItemsPerRowFromStore (row) {
       return this.getItemsForRow(row)
-    }
+    },
+    ...mapGetters({
+      getRows: 'tasks/getRows',
+      getItemsForRow: 'tasks/getItemsForRow'
+    }),
+    ...mapActions({
+      loadSelectedTasks: 'tasks/loadSelectedTasks'
+    })
   }
 }
 </script>
