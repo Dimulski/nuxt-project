@@ -9,6 +9,7 @@ export const getters = () => ({
 
 export const actions = {
   async nuxtServerInit ({ dispatch }, context) {
-    await dispatch('tasks/nuxtServerInit', context)
+    await dispatch('tasks/nuxtServerInit', context) // probably needs Promise.all
+    await dispatch('blog/nuxtServerInit', context)
   }
 }

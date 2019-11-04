@@ -28,7 +28,8 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    '@/plugins/vue-tel-input'
+    '@/plugins/vue-tel-input',
+    '@/plugins/filters.js'
   ],
   /*
   ** Nuxt.js dev-modules
