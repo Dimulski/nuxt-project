@@ -1,8 +1,8 @@
 <template>
-  <main-content title="Task">
+  <main-content title="Tasks">
     <template v-slot:body>
-      <b-row v-for="row in getRows" :key="row">
-        <list-item v-for="item in getItemsPerRowFromStore(row)" :key="item.id">
+      <b-row v-for="row in getRows()" :key="row">
+        <list-item v-for="item in getItemsForRow(row)" :key="item.id">
           <b-card
             :class="[item.completed ? 'completed' : 'in-progress']"
             :title="item.title"
@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import { mapState, mapGetters, mapActions } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 import MainContent from '@/components/MainContent.vue'
 import ListItem from '@/components/ListItem.vue'
 
@@ -28,25 +28,25 @@ export default {
   },
   computed: {
     ...mapState({
-      tasks: state => this.$store.state.tasks.tasks
+      tasks: state => state.tasks.tasks
     })
   },
-  async fetch ({ store, params }) {
-    await store.dispatch('loadSelectedTasks')
-  },
-  mounted () {
-    // this.$store.dispatch('loadSelectedTasks')
+  created () {
   },
   methods: {
-    getItemsPerRowFromStore (row) {
-      return this.getItemsForRow(row)
+    getItemsForRow (row) {
+      const tasksState = this.$store.state.tasks
+      const items = []
+      const startingIndex = (tasksState.itemsPerRow * (row - 1))
+      for (let i = startingIndex, y = 0; i < startingIndex + tasksState.itemsPerRow; i++, y++) {
+        if (tasksState.tasks[i]) {
+          items[y] = tasksState.tasks[i]
+        }
+      }
+      return items
     },
     ...mapGetters({
-      getRows: 'tasks/getRows',
-      getItemsForRow: 'tasks/getItemsForRow'
-    }),
-    ...mapActions({
-      loadSelectedTasks: 'tasks/loadSelectedTasks'
+      getRows: 'tasks/getRows'
     })
   }
 }

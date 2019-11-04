@@ -6,38 +6,24 @@ const state = () => ({
   rows: 3
 })
 
-const getters = () => ({
+const getters = {
   getRows: (state) => {
     return Math.ceil(state.tasks.length / state.itemsPerRow)
-  },
-  getItemsForRow: state => (row) => {
-    const items = []
-    const startingIndex = (state.itemsPerRow * (row - 1))
-    for (let i = startingIndex, y = 0; i < startingIndex + state.itemsPerRow; i++, y++) {
-      if (state.tasks[i]) {
-        items[y] = state.tasks[i]
-      }
-    }
-
-    return items
   }
-})
+}
 
-const actions = () => ({
-  loadSelectedTasks ({ commit }) {
-    axios
-      .get('http://localhost:8080/api/tasks')
-      .then((response) => {
-        commit('setTasks', response.data.filter(task => task.id > 0 && task.id < 10))
-      })
+const actions = {
+  async nuxtServerInit ({ commit }) {
+    const response = await axios.get('http://localhost:8080/api/tasks')
+    commit('setTasks', response.data.filter(task => task.id > 0 && task.id < 10))
   }
-})
+}
 
-const mutations = () => ({
+const mutations = {
   setTasks (state, tasks) {
     state.tasks = tasks
   }
-})
+}
 
 export default {
   namespaced: true,

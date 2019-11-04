@@ -1,4 +1,3 @@
-// store/index.js
 export const state = () => ({
 })
 
@@ -7,4 +6,9 @@ export const getters = () => ({
     return rootGetters['tasks/getRows']
   }
 })
-// end
+
+export const actions = {
+  async nuxtServerInit ({ dispatch }, context) {
+    await dispatch('tasks/nuxtServerInit', context)
+  }
+}
