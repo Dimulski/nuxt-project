@@ -12,5 +12,6 @@ export const actions = {
     await dispatch('tasks/nuxtServerInit', context) // probably needs Promise.all
     await dispatch('blog/nuxtServerInit', context)
     await dispatch('photos/nuxtServerInit', context)
+    await dispatch('todos/nuxtServerInit', context)
   }
 }
