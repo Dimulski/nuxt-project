@@ -1,15 +1,14 @@
 import axios from 'axios'
 
-const state = {
+const state = () => ({
   posts: [],
   post: {},
   itemsPerRow: 3,
   rows: 3
-}
+})
 
 const getters = {
   getRows: (state) => {
-    console.log(Math.ceil(state.posts.length / state.itemsPerRow))
     return Math.ceil(state.posts.length / state.itemsPerRow)
   },
   getCombinedTitleLength: (state) => {
@@ -27,13 +26,6 @@ const actions = {
       .get('http://localhost:8080/api/posts')
       .then((response) => {
         commit('setPosts', response.data)
-      })
-  },
-  fetchPostById ({ commit }, postId) {
-    axios
-      .get(`http://localhost:8080/api/posts/${postId}`)
-      .then((response) => {
-        commit('setPost', response.data)
       })
   },
   loadPost ({ commit }, post) {

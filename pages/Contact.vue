@@ -33,7 +33,7 @@
             <vue-tel-input
               v-model="phone.number"
               :state="phoneState"
-              class="[this.phone.valid == null ? 'form-control is-null' :  (this.phone.valid == true ? 'form-control is-valid' : 'form-control is-invalid')]"
+              :class="[phone.valid == null ? 'form-control is-null' : (phone.valid == true ? 'form-control is-valid' : 'form-control is-invalid')]"
               @onInput="updateNumber"
             />
           </client-only>
@@ -187,6 +187,9 @@ export default {
 
 <style scoped>
 @import "../assets/css/generalForm.css";
+.vue-tel-input {
+  border: 1px solid #ced4da;
+}
 
 .vue-tel-input.is-null:focus-within {
   box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
