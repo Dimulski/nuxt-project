@@ -1,7 +1,7 @@
 <template>
   <b-navbar-brand>
     <router-link to="/">
-      vue-project
+      nuxt-project
     </router-link>
   </b-navbar-brand>
 </template>
