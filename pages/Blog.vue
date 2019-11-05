@@ -33,31 +33,23 @@ export default {
     }),
     ...mapGetters({
       getRows: 'blog/getRows',
-      getCombinedTitleLength: 'blog/getCombinedTitleLength'
+      getCombinedTitleLength: 'blog/getCombinedTitleLength',
+      getItemsForRowFromStore: 'blog/getItemsForRow'
     })
   },
   watch: {
     posts () {
+      // eslint-disable-next-line
       console.log(`Combined title length is ${this.getCombinedTitleLength}`)
     }
   },
   methods: {
     getItemsForRow (row) {
-      const blogState = this.$store.state.blog
-      const items = []
-      const startingIndex = (blogState.itemsPerRow * (row - 1))
-      for (let i = startingIndex, y = 0; i < startingIndex + blogState.itemsPerRow; i++, y++) {
-        if (blogState.posts[i]) {
-          items[y] = blogState.posts[i]
-        }
-      }
-      return items
+      return this.getItemsForRowFromStore(row)
     },
     logEmitter (title) {
+      // eslint-disable-next-line
       console.log(`${title} emitted an event`)
-    },
-    getItemsPerRowFromStore (row) {
-      return this.getItemsForRow(row)
     }
   }
 }

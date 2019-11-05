@@ -11,6 +11,16 @@ const getters = {
   getRows: (state) => {
     return Math.ceil(state.posts.length / state.itemsPerRow)
   },
+  getItemsForRow: state => (row) => {
+    const items = []
+    const startingIndex = (state.itemsPerRow * (row - 1))
+    for (let i = startingIndex, y = 0; i < startingIndex + state.itemsPerRow; i++, y++) {
+      if (state.posts[i]) {
+        items[y] = state.posts[i]
+      }
+    }
+    return items
+  },
   getCombinedTitleLength: (state) => {
     return state.posts.reduce((totalLength, currentPost) => totalLength + currentPost.title.length, 0)
   }

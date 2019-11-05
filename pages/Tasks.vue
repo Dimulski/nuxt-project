@@ -1,7 +1,7 @@
 <template>
   <main-content title="Tasks">
     <template v-slot:body>
-      <b-row v-for="row in getRows()" :key="row">
+      <b-row v-for="row in getRows" :key="row">
         <list-item v-for="item in getItemsForRow(row)" :key="item.id">
           <b-card
             :class="[item.completed ? 'completed' : 'in-progress']"
@@ -29,25 +29,16 @@ export default {
   computed: {
     ...mapState({
       tasks: state => state.tasks.tasks
+    }),
+    ...mapGetters({
+      getRows: 'tasks/getRows',
+      getItemsForRowFromStore: 'tasks/getItemsForRow'
     })
-  },
-  created () {
   },
   methods: {
     getItemsForRow (row) {
-      const tasksState = this.$store.state.tasks
-      const items = []
-      const startingIndex = (tasksState.itemsPerRow * (row - 1))
-      for (let i = startingIndex, y = 0; i < startingIndex + tasksState.itemsPerRow; i++, y++) {
-        if (tasksState.tasks[i]) {
-          items[y] = tasksState.tasks[i]
-        }
-      }
-      return items
-    },
-    ...mapGetters({
-      getRows: 'tasks/getRows'
-    })
+      return this.getItemsForRowFromStore(row)
+    }
   }
 }
 </script>

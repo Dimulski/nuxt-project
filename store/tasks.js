@@ -9,6 +9,16 @@ const state = () => ({
 const getters = {
   getRows: (state) => {
     return Math.ceil(state.tasks.length / state.itemsPerRow)
+  },
+  getItemsForRow: state => (row) => {
+    const items = []
+    const startingIndex = (state.itemsPerRow * (row - 1))
+    for (let i = startingIndex, y = 0; i < startingIndex + state.itemsPerRow; i++, y++) {
+      if (state.tasks[i]) {
+        items[y] = state.tasks[i]
+      }
+    }
+    return items
   }
 }
 
