@@ -29,7 +29,8 @@ export default {
   */
   plugins: [
     '@/plugins/vue-tel-input',
-    '@/plugins/filters.js'
+    '@/plugins/filters.js',
+    '@/plugins/vue2-animate.js'
   ],
   /*
   ** Nuxt.js dev-modules
