@@ -53,7 +53,7 @@
           variant="primary"
           :disabled="!formState"
           class="btn-lg"
-          @:click="submitForm($event)"
+          @click="submitForm($event)"
         >
           Submit
         </b-button>
@@ -63,7 +63,7 @@
     <transition
       name="fadeUp"
       :duration="{ enter: 1800, leave: 1800 }"
-      @:after-enter="showMessage = false"
+      @after-enter="showMessage = false"
     >
       <p v-if="showMessage" id="message-sent">
         Message Sent!
