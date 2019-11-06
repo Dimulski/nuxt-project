@@ -49,7 +49,7 @@
         </b-button>
       </template>
       <template v-slot:cell(is_completed)="row">
-        <b-form-checkbox :value="row.item.completed" size="lg" switch @change="updateStatus(row.item)" />
+        <b-form-checkbox :checked="row.item.completed" size="lg" switch @change="updateStatus(row.item)" />
       </template>
     </b-table>
     <b-pagination
@@ -144,8 +144,7 @@ export default {
       }
     },
     updateStatus (row) {
-      console.log(row)
-      this.updateStatusX(row)
+      this.updateTodoStatus(row)
     },
     ...mapActions({
       setCurrentPage: 'todos/setCurrentPage',
@@ -158,7 +157,7 @@ export default {
       resetEdit: 'todos/resetEdit',
       deleteTodo: 'todos/deleteTodo',
       saveTodo: 'todos/saveTodo',
-      updateStatusX: 'todos/updateStatus'
+      updateTodoStatus: 'todos/updateStatus'
     }),
     saveStatus (todo) {
       const alteredTodo = todo

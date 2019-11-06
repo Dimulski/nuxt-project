@@ -60,6 +60,9 @@ const actions = {
   },
   updateStatus ({ commit }, todo) {
     commit('updateStatus', todo)
+    axios.put(`http://localhost:8080/api/todos/${todo.id}`,
+      { 'id': todo.id, 'title': todo.title, 'completed': todo.completed }
+    )
   }
 }
 
@@ -90,7 +93,7 @@ const mutations = {
     state.todoBeingEdited = todo
   },
   saveTodoTitle (state, newTitle) {
-    state.todos[state.todoBeingEdited.id - 1].title = newTitle
+    state.todos.find(({ id }) => id === state.todoBeingEdited.id).title = newTitle
   },
   resetEdit (state) {
     state.editField = null
@@ -106,7 +109,7 @@ const mutations = {
     )
   },
   updateStatus (state, row) {
-    console.log(row.id)
+    state.todos.find(({ id }) => id === row.id).completed = !row.completed
   }
 }
 
